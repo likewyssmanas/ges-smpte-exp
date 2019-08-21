@@ -1,0 +1,36 @@
+(library
+ (name ges_c_c)
+ (public_name nuggets.ges-c.c)
+ (preprocess no_preprocessing)
+ (self_build_stubs_archive (ges_c_c)))
+
+(rule
+ (targets libges_c_c_stubs.a)
+ (deps core.o)
+ (action (run ar rcs %{targets} %{deps})))
+
+;; We don't need .so. Creating a dummy .so
+(rule
+ (targets dllges_c_c_stubs.so)
+ (deps   (:c foo.o))
+ (action (run %{cc} -shared -o %{targets} %{c})))
+
+;; (rule
+;;  (targets dllges_c_c_stubs.so)
+;;  (deps   (:c core.o) libs.txt)
+;;  (action (run %{cc} -shared %{read-lines:./libs.txt} -o %{targets} %{c})))
+
+(rule
+ (targets core.o)
+ (deps (:c core.c) core.h cflags.txt)
+ (action (run %{cc} %{read-lines:./cflags.txt} -I. -c %{c})))
+
+(rule
+ (targets foo.o)
+ (deps (:c foo.c))
+ (action (run %{cc} -I. -c %{c})))
+
+(rule
+ (targets cflags.txt libs.txt)
+  (deps    ../config/discover.exe)
+  (action  (run %{deps})))

@@ -1,0 +1,12 @@
+(library
+   (name NuggetsAssets)
+   (public_name nuggets.assets)
+)
+ 
+(install
+ (section share_root)
+ (files
+  (quote.png as assets/quote.png)
+  (twitter.png as assets/twitter.png)
+  (gradient.png as assets/gradient.png)
+  (background.svg as assets/background.svg)))

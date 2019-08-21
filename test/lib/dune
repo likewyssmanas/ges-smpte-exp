@@ -1,0 +1,4 @@
+(library (name Lib) (public_name nuggets.test.lib)
+    (c_names test_media_file_stubs) (c_flags (:include c_flags.sexp))
+    (c_library_flags (:include c_library_flags.sexp))) (rule (targets c_flags.sexp c_library_flags.sexp)
+    (deps ../../configurator/discover.exe) (action (run %{deps}))) 

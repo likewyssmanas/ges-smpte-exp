@@ -1,0 +1,17 @@
+(rule
+ (targets   c_flags.sexp
+            c_library_flags.sexp)
+  (deps    ../config/discover.exe)
+  (action  (run %{deps})))
+
+
+(library
+ (name nuggets)
+ (public_name nuggets.lib)
+ (libraries nuggets.ges-c gi-gst-editing-services gi-gstreamer gi-gobject lwt lwt.unix integers tablecloth-native)
+ (preprocess (pps lwt_ppx))
+ (flags "-w" "-26")
+ (c_names         stubs)
+ (c_flags         (:include c_flags.sexp))
+ (c_library_flags (:include c_library_flags.sexp))
+)

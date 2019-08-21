@@ -1,0 +1,6 @@
+(executables
+ (public_names nuggets.exe)
+ (names cli)
+ (libraries nuggets.lib)
+ (preprocess (pps lwt_ppx))
+)

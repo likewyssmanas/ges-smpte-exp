@@ -1,0 +1,190 @@
+{
+  "name": "nuggets",
+  "version": "0.0.0",
+  "description": "My Project",
+  "esy": {
+    "exportedEnv": {
+      "DYLD_LIBRARY_PATH": {
+        "val": "#{esy-theora.lib}:#{esy-libogg.lib}:#{esy-vorbis.lib}:#{esy-vpx.lib}:/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources:#{esy-libtiff.lib}:#{esy-libmpg123.lib}:#{esy-x264.lib}:#{esy-zlib.lib}:#{esy-libpng.lib}:#{pcre.lib}:#{esy-librsvg.lib}:#{glib.lib}:#{esy-gst-editing-services.lib}: #{esy-gst-plugins-bad.lib}:#{esy-gst-libav.lib}:#{esy-gst-plugins-ugly.lib}:#{esy-gstreamer.lib}:#{esy-gst-plugins-good.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-base.lib}:#{esy-gstreamer.lib}:#{esy-libjpeg.lib}:#{esy-twolame.lib}:$LD_LIBRARY_PATH",
+        "scope": "global"
+      },
+      "LD_LIBRARY_PATH": {
+        "val": "#{esy-libsoup.lib}:#{esy-openh264.lib}:#{esy-theora.lib}:#{esy-libogg.lib}:#{esy-vorbis.lib}:#{esy-vpx.lib}:#{esy-libtiff.lib}:#{esy-libmpg123.lib}:#{esy-x264.lib}:#{esy-zlib.lib}:#{esy-libpng.lib}:#{pcre.lib}:#{esy-librsvg.lib}:#{glib.lib}:#{esy-gst-editing-services.lib}:#{esy-gst-plugins-bad.lib}:#{esy-gst-plugins-ugly.lib}:#{esy-gstreamer.lib}:#{esy-gst-libav.lib}:#{esy-gst-plugins-good.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-base.lib}:#{esy-gstreamer.lib}:#{esy-libjpeg.lib}:#{esy-twolame.lib}:$LD_LIBRARY_PATH",
+        "scope": "global"
+      },
+      "GST_REGISTRY": {
+        "val": "#{self.share / 'registry.bin'}",
+        "scope": "global"
+      },
+      "GST_DEBUG": {
+        "val": "3",
+        "scope": "global"
+      },
+      "GST_PLUGIN_PATH": {
+        "val": "#{esy-gst-plugins-base.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-bad.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-ugly.lib / 'gstreamer-1.0'}:#{esy-gst-editing-services.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-good.lib / 'gstreamer-1.0'}:#{esy-gst-libav.lib / 'gstreamer-1.0'}",
+        "scope": "global"
+      }
+    },
+    "buildEnv": {
+      "GST_REGISTRY": "#{self.share / 'registry.bin'}",
+      "GST_PLUGIN_PATH": "#{esy-gst-plugins-base.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-bad.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-ugly.lib / 'gstreamer-1.0'}:#{esy-gst-editing-services.lib / 'gstreamer-1.0'}:#{esy-gst-plugins-good.lib / 'gstreamer-1.0'}:#{esy-gst-libav.lib / 'gstreamer-1.0'}",
+      "GST_DEBUG": "4",
+      "LD_LIBRARY_PATH": "#{esy-libtiff.lib}:#{esy-x264.lib}:#{esy-gst-libav.lib}:#{esy-zlib.lib}:#{esy-libpng.lib}:#{esy-librsvg.lib}:#{esy-fribidi.lib}:#{esy-freetype2.lib}:#{esy-zlib.lib}:#{esy-gst-editing-services.lib}:#{pcre.lib}:#{esy-gstreamer.lib}:#{esy-gst-plugins-base.lib}:#{esy-libjpeg.lib}:#{esy-gst-plugins-good.lib}:$LD_LIBRARY_PATH",
+      "PKG_CONFIG_PATH": "$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig"
+    },
+    "build": [
+      "dune build -p #{self.name}"
+    ],
+    "release": {
+      "bin": [
+        "nuggets.exe"
+      ],
+      "includePackages": [
+        "esy-gst-plugins-base",
+        "esy-gst-plugins-ugly",
+        "esy-gst-plugins-bad",
+        "esy-gstreamer",
+        "esy-gst-editing-services"
+      ]
+    }
+  },
+  "buildDirs": {
+    "configurator": {
+      "bin": "discover.ml",
+      "require": [
+        "base",
+        "stdio",
+        "dune.configurator"
+      ]
+    },
+    "test": {
+      "require": [
+        "nuggets/library",
+        "nuggets/test/lib",
+        "rely.lib"
+      ],
+      "bin": "TestNuggets.re"
+    },
+    "test/lib": {
+      "cNames": [
+        "test_media_file_stubs"
+      ],
+      "rawBuildConfig": [
+        "(c_flags         (:include c_flags.sexp))",
+        "(c_library_flags (:include c_library_flags.sexp))"
+      ],
+      "rawBuildConfigFooter": [
+        "(rule (targets c_flags.sexp c_library_flags.sexp) (deps    ../../configurator/discover.exe) (action  (run %{deps})))"
+      ]
+    },
+    "library": {},
+    "executable": {
+      "require": [
+        "nuggets/library"
+      ],
+      "bin": {
+        "NuggetsApp.exe": "NuggetsApp.re"
+      }
+    }
+  },
+  "scripts": {
+    "test": "esy b dune runtest"
+  },
+  "dependencies": {
+     "esy-libsoup": "prometheansacrifice/esy-libsoup#8e3c306e1e17106f27b68749d014b2537b331f7e",
+       "esy-openh264": "prometheansacrifice/esy-openh264#88e02ff42bbd52314f87175e24f6cab727bbbaac",
+
+    "esy-ffmpeg": "*",
+    "@esy-ocaml/reason": "*",
+    "@opam/atdgen": "*",
+    "@opam/cmdliner": "1.0.3",
+    "@opam/ctypes": "*",
+    "@opam/dune": "*",
+    "@opam/gi-gst-editing-services": "*",
+    "@opam/lwt_ppx": "*",
+    "@opam/sexplib": "*",
+    "@opam/tablecloth-native": "0.0.6",
+    "@reason-native/rely": "*",
+    "esy-cairo": "prometheansacrifice/esy-cairo#fd3e0f12ddc06b6cf6237c486be4c5475cf980f8",
+    "esy-freetype2": "prometheansacrifice/esy-freetype2#3b4ec35325670f1a767362bb5e318897da86629b",
+    "esy-fribidi": "prometheansacrifice/esy-fribidi#b9e5eb1da7057693742af75cf98a0db2cce083a8",
+    "esy-gst-editing-services": "*",
+    "esy-gst-libav": "*",
+    "esy-gst-plugins-bad": "*",
+    "esy-gst-plugins-base": "*",
+    "esy-gst-plugins-good": "*",
+    "esy-gst-plugins-ugly": "*",
+    "esy-gstreamer": "*",
+    "esy-libjpeg": "*",
+    "esy-libmpg123": "prometheansacrifice/esy-libmpg123#68437ac59c34ada48c30784678cbcaadda4b3c74",
+    "esy-libogg": "prometheansacrifice/esy-libogg#4b5ac163c4e085cd8ed35ada86bc7e4a66c24bd1",
+    "esy-libpng": "esy-packages/esy-libpng#d846df4a8547b3299c7627773008bd97543d7048",
+    "esy-librsvg": "prometheansacrifice/esy-librsvg#542c516d5ad08ae6b9f8c9c21f3d8d1b2d3ded1a",
+    "esy-libtiff": "prometheansacrifice/esy-libtiff#f57a249919cc8d25bd59731582e75eff2a8ed983",
+    "esy-theora": "prometheansacrifice/esy-libtheora#06818d691b04e42214ed2c899e90d59f29351eba",
+    "esy-twolame": "prometheansacrifice/esy-twolame#a634a9785b7f15ac5fc50b5aadfa79cfd5552fac",
+    "esy-vorbis": "prometheansacrifice/esy-vorbis#7fe3b73b9173a8715ee0c6752088bccb8a68dee5",
+    "esy-vpx": "prometheansacrifice/esy-vpx#3aae0f7164b9e43a0146b078a7c125d70835c419",
+    "esy-x264": "prometheansacrifice/esy-x264#c8cdf1140d797f20d9d676787fa65bf6f4470e3a",
+    "esy-zlib": "esy-packages/esy-zlib#404929fd8b7ed83ed6a528d751840faff957b4b3",
+    "glib": "prometheansacrifice/esy-glib#b133b09d13178143e2ad916f7ee10ce88695be9d",
+    "ocaml": "4.7.x",
+    "pcre": "*"
+  },
+  "devDependencies": {
+    "refmterr": "*",
+    "pesy": "*",
+    "@opam/merlin": "*"
+  },
+  "resolutions": {
+"esy-ffmpeg": "git:git@github.com:likewyssmanas/esy-ffmpeg#4ff329a3a03fe1fa77eae45d5a0b3ab6162c4eb0",
+    "esy-libjpeg": "prometheansacrifice/libjpeg-turbo#50e8e32c48fbe3494a7b8403d019bcb3bd2a9d9b",
+    "@opam/gi-gst-editing-services": {
+      "source": "prometheansacrifice/ges-bindings-ocaml:gi-gst-editing-services.opam#b2261c9f973b4c04cf1d0096b73fac4ee1bd8c51",
+      "override": {
+        "dependencies": {
+          "esy-gst-editing-services": "*"
+        }
+      }
+    },
+    "@opam/gi-gstreamer": {
+      "source": "prometheansacrifice/ocaml-gstreamer:gi-gstreamer.opam#127e225c07044b5f01715c3b2705d9b74d886a89",
+      "override": {
+        "dependencies": {
+          "esy-gstreamer": "*"
+        }
+      }
+    },
+    "@opam/sexplib": {
+      "source": "janestreet/sexplib:sexplib.opam#ac07ca0368dd5c0bc79d6c206901c52f4e58c36c",
+      "override": {
+        "dependencies": {
+          "ocaml": "*",
+          "@opam/parsexp": "*",
+          "@opam/sexplib0": " *",
+          "@opam/dune": "*",
+          "@opam/num": "*"
+        }
+      }
+    },
+    "pcre": "esy-packages/esy-pcre2#daf0346ea9a0515aee3ef82faa63b6d6b63fa603",
+    "esy-gst-libav": "git:git@github.com:likewyssmanas/esy-gst-libav#94c04fe992d81cf925ea523b82a99b92edcf84bd",
+    "esy-gettext": "prometheansacrifice/esy-gettext#d1abfd44b560c36b02e06e5393b8e3b64d8c96be",
+    "esy-gstreamer": "git:git@github.com:likewyssmanas/esy-gstreamer.git#d9f9f3d70f56c360d64745d1e49af5cd72ec02e3",
+    "esy-texinfo": "esy-packages/esy-texinfo#12c14c804049ecb57b9ef27d34deeff07abb1588",
+    "esy-gst-plugins-good": "git:git@github.com:likewyssmanas/esy-gst-plugins-good.git#cef142e503964cd71f8c957f76683781382bc82b",
+    "esy-gst-plugins-base": "git:git@github.com:likewyssmanas/gst-plugins-base.git#7186273f98fb746540460519053f411d72c3c1bc",
+    "esy-gst-plugins-bad": "git:git@github.com:likewyssmanas/esy-gst-plugins-bad.git#33e9e88eff3e569278acb5d355f28c38ad261c4c",
+    "esy-gst-editing-services": "git:git@github.com:likewyssmanas/esy-gst-editing-services.git#96e45212806f0f34da557d22d907cc35c1d29a41",
+    "esy-gst-plugins-ugly": "git:git@github.com:likewyssmanas/esy-gst-plugins-ugly.git#659c4a593e1aa4d4b9f96e500efc1abd0e636852",
+    "@opam/gobject-introspection": "prometheansacrifice/ocaml-gobject-introspection:gobject-introspection.opam#9cdf3e40d895546b8883e58df3f791c02f904aef",
+    "@esy-ocaml/libffi": "prometheansacrifice/libffi#9f60bed74b01fefb5f26b49806108cdfe0ed6384",
+    "esy-gdk-pixbuf": "prometheansacrifice/esy-gdk-pixbuf#ea04507533037b1c1c5da445b1c6b73054ffc485",
+    "@opam/gi-glib2": "prometheansacrifice/OCaml-GLib2:gi-glib2.opam#a64a6a07c6b1a33d41bb003caee6d11ce8d1dfc5",
+    "@opam/gi-bindings-generator": "prometheansacrifice/OCaml-GI-ctypes-bindings-generator:gi-bindings-generator.opam#3bf536ac6be5a44cc0d715e39f3d4621d99416f3",
+    "pesy": "esy/pesy#75d62cf",
+    "esy-flex": "prometheansacrifice/esy-flex#98ffe2ef4e266de9c2b84acb0ee5de88d1ce0d5e",
+    "@opam/gi-gst-controller": "prometheansacrifice/ocaml-gst-controller:gi-gst-controller.opam#4bb619b01037cac7faf06d0ec1ed5f0f56a9e6e4",
+    "@opam/gi-gobject": "prometheansacrifice/ocaml-gobject:gi-gobject.opam#242494f9e816ef7d96c22623156f270cd772f27a"
+  }
+}

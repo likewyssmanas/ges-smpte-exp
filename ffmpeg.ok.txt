@@ -1,0 +1,61 @@
+ffmpeg version 4.1.4 Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 7 (Ubuntu 7.4.0-1ubuntu1~18.04.1)
+  configuration: --prefix=/root/.esy/3__________________________________________________________________________/i/esy_ffmpeg-bafc9cc8
+  libavutil      56. 22.100 / 56. 22.100
+  libavcodec     58. 35.100 / 58. 35.100
+  libavformat    58. 20.100 / 58. 20.100
+  libavdevice    58.  5.100 / 58.  5.100
+  libavfilter     7. 40.101 /  7. 40.101
+  libswscale      5.  3.100 /  5.  3.100
+  libswresample   3.  3.100 /  3.  3.100
+Input #0, image2, from '/root/long-vid/1.jpg':
+  Duration: 00:00:00.04, start: 0.000000, bitrate: 133057 kb/s
+    Stream #0:0: Video: mjpeg, yuvj444p(pc, bt470bg/unknown/unknown), 2000x1352 [SAR 300:300 DAR 250:169], 25 fps, 25 tbr, 25 tbn, 25 tbc
+Stream mapping:
+  Stream #0:0 (mjpeg) -> zoompan
+  trim -> Stream #0:0 (mpeg4)
+Press [q] to stop, [?] for help
+[swscaler @ 0x55be6aa9a6c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6aad1b80] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6aad1b80] Warning: data is not aligned! This can lead to a speed loss
+Output #0, mp4, to '/mnt/volume_blr1_03/downloads/file-0-zoom.mp4':
+  Metadata:
+    encoder         : Lavf58.20.100
+    Stream #0:0: Video: mpeg4 (mp4v / 0x7634706D), yuv420p, 1280x720 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 25 fps, 12800 tbn, 25 tbc
+    Metadata:
+      encoder         : Lavc58.35.100 mpeg4
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
+[swscaler @ 0x55be6ae53640] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6af90340] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b042f00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043480] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043a00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043d80] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b044200] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b044040] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b044140] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b0440c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b044000] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043f00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043d00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043c80] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043bc0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043b00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043940] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043900] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043840] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043740] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b0436c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b0435c0] deprecated pixel format used, make sure you did set range correctly
+    Last message repeated 1 times
+[swscaler @ 0x55be6b0434c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043440] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 0x55be6b043400] deprecated pixel format used, make sure you did set range correctly
+    Last message repeated 10 times
+[swscaler @ 0x55be6b043400] deprecated pixel format used, make sure you did set range correctly
+    Last message repeated 38 times
+frame=   75 fps=0.0 q=31.0 Lsize=     466kB time=00:00:02.96 bitrate=1288.6kbits/s speed= 3.1x
+video:464kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.252531%
+Will run ffmpeg
+

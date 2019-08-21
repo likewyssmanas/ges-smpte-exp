@@ -1,0 +1,2 @@
+(executable (name discover) (public_name discover.exe)
+    (libraries base stdio dune.configurator)) 

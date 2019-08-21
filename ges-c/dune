@@ -1,0 +1,30 @@
+(rule
+ (targets types_stub.ml)
+ (deps ../stubgen/ml_types_stubgen.exe)
+ (action (with-stdout-to %{targets} (run %{deps}))))
+
+(rule
+ (targets stub.ml)
+ (deps ../stubgen/stubgen.exe)
+ (action (with-stdout-to %{targets} (run %{deps} -ml))))
+
+(rule
+ (targets stub.c)
+ (deps (:stubgen ../stubgen/stubgen.exe))
+ (action (with-stdout-to %{targets} (run %{stubgen} -c))))
+
+(library
+  (name ges_c)
+  (public_name nuggets.ges-c)
+  (libraries ctypes ctypes.foreign nuggets.ges-c.c nuggets.ges-c.binding-types nuggets.ges-c.bindings)
+  (c_names stub)
+  (flags (:standard -w -9-27-32-34))
+  (c_flags         (:include c_flags.sexp))
+  (c_library_flags (:include c_library_flags.sexp)))
+
+(rule
+ (targets c_flags.sexp c_library_flags.sexp)
+ (deps    (:discover ../config/discover.exe))
+ (action  (run %{discover})))
+
+

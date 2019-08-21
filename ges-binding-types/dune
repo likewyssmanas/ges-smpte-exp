@@ -1,0 +1,4 @@
+(library
+ (name ges_c_binding_types)
+ (public_name nuggets.ges-c.binding-types)
+ (libraries ctypes ctypes.foreign))

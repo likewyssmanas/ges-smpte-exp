@@ -1,0 +1,5 @@
+(library
+ (name ges_c_bindings)
+ (synopsis "Ctypes bindings that describe the GES FFI")
+ (public_name nuggets.ges-c.bindings)
+ (libraries nuggets.ges-c.binding-types ctypes.stubs ctypes gi-gst-editing-services))

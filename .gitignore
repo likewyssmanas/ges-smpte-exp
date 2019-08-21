@@ -1,0 +1,13 @@
+.env.sh
+*~
+_esy
+npm-debug.log
+.merlin
+yarn-error.log
+node_modules/
+_build
+_release
+nuggets.install
+.DS_Store
+*.install
+run.local.sh
