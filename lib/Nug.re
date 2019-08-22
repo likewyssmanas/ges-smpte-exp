@@ -2,6 +2,16 @@ open Ctypes;
 open GstEditingServices;
 open Printf;
 
+module Guard = {
+  let safe = (~f_sym) =>
+    fun
+    | true => ()
+    | false => {
+        Printf.printf("%s failed. Exiting...", f_sym);
+        exit(-1);
+      };
+};
+
 module Void_ptr = {
   let create = x => to_voidp(x);
 };
