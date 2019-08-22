@@ -111,7 +111,7 @@ let run = () => {
             Timeline_element.t_typ,
             to_voidp(
               create_effect(
-                sprintf("smptealpha border=1 type=44 position=0.5"),
+                sprintf("smptealpha border=1 type=44 position=0.5 "),
               ),
             ),
           );
